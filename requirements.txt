@@ -1,0 +1,14 @@
+# App
+flask==0.12
+flask-cache==0.13.1
+flask-script==2.0.5
+flask-restful==0.3.5
+
+# Other
+google-cloud==0.22.0
+
+# Tests
+pytest==3.0.7
+pytest-cov==2.4.0
+pytest-mock==1.5.0
+pytest-flask==0.10.0
