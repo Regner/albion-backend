@@ -1,13 +1,12 @@
 
-FROM alpine:3.5
+FROM python:3.6-alpine
 
 ADD . /app/
 WORKDIR /app/
 
-RUN apk --update add python python-dev py-pip build-base \
-    && pip install -qU pip gunicorn \
+RUN pip install -qU pip gunicorn \
     && pip install -r requirements.txt
 
 EXPOSE 8000
 
-CMD ["/usr/bin/gunicorn", "wsgi:app", "-w", "3", "-b", ":8000", "--log-level", "debug"]
+CMD ["gunicorn", "wsgi:app", "-w", "3", "-b", ":8000", "--log-level", "debug"]
