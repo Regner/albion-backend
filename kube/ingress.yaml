@@ -4,12 +4,13 @@ metadata:
   name: albion-backend
   annotations:
     kubernetes.io/ingress.class: "traefik"
+    traefik.frontend.rule.type: pathprefixstrip
 spec:
   rules:
-    - host: api.albion.regnerba.com
+    - host: albion.regnerba.com
       http:
         paths:
-          - path: /
+          - path: /api/
             backend:
               serviceName: albion-backend
               servicePort: http

@@ -26,6 +26,8 @@ class StaticDataExports(Resource):
             data[version].append({
                 'name': blob.name,
                 'url': blob.public_url,
+                'size': blob.size,
+                'updated': blob.updated.strftime("%Y-%m-%d %H:%M:%S"),
             })
 
         return data
