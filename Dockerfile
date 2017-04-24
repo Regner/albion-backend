@@ -4,12 +4,9 @@ FROM alpine:3.5
 ADD . /app/
 WORKDIR /app/
 
-RUN apk --update add python3 python3-dev \
-	&& python3 -m ensurepip \
-	&& rm -r /usr/lib/python*/ensurepip \
-    && pip3 install -qU pip gunicorn \
-    && pip3 install -r requirements.txt \
-    && rm -r /root/.cache
+RUN apk --update add python python-dev py-pip build-base \
+    && pip install -qU pip gunicorn \
+    && pip install -r requirements.txt
 
 EXPOSE 8000
 
