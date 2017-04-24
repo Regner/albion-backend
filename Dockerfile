@@ -1,18 +1,13 @@
 
-FROM debian:latest
+FROM alpine:3.5
 
 ADD . /app/
-
 WORKDIR /app/
 
-RUN apt-get update -qq \
-    && apt-get upgrade -y -qq \
-    && apt-get install -y -qq python-dev python-pip \
-    && apt-get autoremove -y \
-    && apt-get clean autoclean \
-    && pip install -qU pip uwsgi \
+RUN apk --update add py-gunicorn python py-pip
+    && pip install -qU gunicorn \
     && pip install -r requirements.txt
 
 EXPOSE 8000
 
-CMD ["uwsgi", "--http", "0.0.0.0:8000", "--module", "wsgi:app", "--processes", "1", "--threads", "8"]
+CMD ["/usr/bin/gunicorn", "wsgi:app", "-w", "3", "-b", ":8000", "--log-level", "debug"]
