@@ -5,7 +5,7 @@ ADD . /app/
 
 WORKDIR /app/
 
-RUN apt-get update -qq
+RUN apt-get update -qq \
     && apt-get upgrade -y -qq \
     && apt-get install -y -qq python-dev python-pip \
     && apt-get autoremove -y \
