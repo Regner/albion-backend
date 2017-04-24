@@ -4,7 +4,7 @@ FROM python:3.6-alpine
 ADD . /app/
 WORKDIR /app/
 
-RUN pip install -qU pip gunicorn \
+RUN pip install -qU pip setuptools gunicorn \
     && pip install -r requirements.txt
 
 EXPOSE 8000
