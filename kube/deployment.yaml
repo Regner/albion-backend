@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: albion-backend
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: albion-backend
+    spec:
+      containers:
+        - name: albion-backend
+          image: us.gcr.io/personal-projects-1369/albion/backend:latest
+          imagePullPolicy: Always
+          resources:
+            limits:
+              cpu: 20m
+              memory: 200Mi
+            requests:
+              cpu: 1m
+              memory: 25Mi
+          ports:
+            - containerPort: 8000
