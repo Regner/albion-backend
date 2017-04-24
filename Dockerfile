@@ -4,7 +4,7 @@ FROM alpine:3.5
 ADD . /app/
 WORKDIR /app/
 
-RUN apk --update add py-gunicorn python py-pip \
+RUN apk --update add py-gunicorn python python-dev py-pip \
     && pip install -qU gunicorn \
     && pip install -r requirements.txt
 
