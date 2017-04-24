@@ -4,7 +4,10 @@ FROM python:3.6-alpine
 ADD . /app/
 WORKDIR /app/
 
-RUN pip install -qU pip setuptools gunicorn \
+RUN apt-get update -qq \
+    && apt-get upgrade -y -qq \
+    && apt-get install -y -qq python-dev \
+    && pip install -qU pip setuptools gunicorn \
     && pip install -r requirements.txt
 
 EXPOSE 8000
