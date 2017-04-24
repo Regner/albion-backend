@@ -12,4 +12,4 @@ RUN apt-get update -qq \
 
 EXPOSE 8000
 
-CMD ["gunicorn", "wsgi:app", "-w", "3", "-b", ":8000", "--log-level", "debug"]
+CMD ["gunicorn", "wsgi:app", "-w", "3", "-b", ":8000", "--log-level", "debug", "--timeout", "120"]
