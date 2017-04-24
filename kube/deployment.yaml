@@ -3,6 +3,12 @@ kind: Deployment
 metadata:
   name: albion-backend
 spec:
+  minReadySeconds: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+        maxUnavailable: 1
+        maxSurge: 1
   replicas: 2
   template:
     metadata:
@@ -22,3 +28,6 @@ spec:
               memory: 250Mi
           ports:
             - containerPort: 8000
+          env:
+            - name: DATADOG_ENV
+              value: prod
